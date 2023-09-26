@@ -7,8 +7,8 @@
 </template>
 
 <script setup>
-import TheHeader from "@/components/UiBlock/TheHeader";
-import TheFooter from "@/components/UiBlock/TheFooter";
+import TheHeader from "@/components/Block/TheHeader";
+import TheFooter from "@/components/Block/TheFooter";
 </script>
 
 <style lang="scss"></style>

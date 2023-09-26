@@ -7,6 +7,7 @@ const routes = [
     name: "home",
     component: MainPage,
   },
+
   {
     path: "/shop",
     name: "shop",
@@ -15,12 +16,39 @@ const routes = [
       return import("../views/ShopPage");
     },
   },
+
   {
     path: "/product/:id",
     name: "product",
 
     component: function () {
       return import("../views/ProductPage");
+    },
+  },
+
+  {
+    path: "/blog",
+    name: "blog",
+
+    component: function () {
+      return import("../views/BlogPage");
+    },
+  },
+
+  {
+    path: "/blog/:id",
+    name: "blog-coments",
+
+    component: function () {
+      return import("../views/BlogComentsPage");
+    },
+  },
+  {
+    path: "/our-story",
+    name: "our-story",
+
+    component: function () {
+      return import("../views/OurStoryPage");
     },
   },
 ];

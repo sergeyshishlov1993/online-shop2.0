@@ -1,18 +1,17 @@
 import { defineStore } from "pinia";
 import { useCartData } from "./cartData";
+import { reactive } from "vue";
 
 export const useItemStore = defineStore("itemStore", () => {
   // ----------------item card data---------------------
 
   const { cartData } = useCartData();
-  const itemArr = [
+  const itemArr = reactive([
     {
       src: "firstCard.png",
       title: "Lira Earrings",
       price: "$ 20,00",
       id: 1,
-
-      quantity: 0,
 
       productDescription:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam  placerat, augue a volutpat hendrerit, sapien tortor faucibus augue, a  maximus elit ex vitae libero. Sed quis mauris eget arcu facilisis consequat sed eu felis. Nunc sed porta augue. Morbi porta tempor odio, in  molestie diam bibendum sed 1",
@@ -42,8 +41,6 @@ export const useItemStore = defineStore("itemStore", () => {
       price: "$ 25,00",
       id: 2,
 
-      quantity: 0,
-
       productDescription:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam  placerat, augue a volutpat hendrerit, sapien tortor faucibus augue, a  maximus elit ex vitae libero. Sed quis mauris eget arcu facilisis consequat sed eu felis. Nunc sed porta augue. Morbi porta tempor odio, in  molestie diam bibendum sed 2",
 
@@ -70,8 +67,6 @@ export const useItemStore = defineStore("itemStore", () => {
       title: "Kaede Hair Pin Set Of 3 ",
       price: "$ 30,00",
       id: 3,
-
-      quantity: 0,
 
       productDescription:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam  placerat, augue a volutpat hendrerit, sapien tortor faucibus augue, a  maximus elit ex vitae libero. Sed quis mauris eget arcu facilisis consequat sed eu felis. Nunc sed porta augue. Morbi porta tempor odio, in  molestie diam bibendum sed 3",
@@ -100,8 +95,6 @@ export const useItemStore = defineStore("itemStore", () => {
       price: "$ 20,00",
       id: 4,
 
-      quantity: 0,
-
       productDescription:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam  placerat, augue a volutpat hendrerit, sapien tortor faucibus augue, a  maximus elit ex vitae libero. Sed quis mauris eget arcu facilisis consequat sed eu felis. Nunc sed porta augue. Morbi porta tempor odio, in  molestie diam bibendum sed 4",
 
@@ -128,8 +121,6 @@ export const useItemStore = defineStore("itemStore", () => {
       title: "Plaine Necklace",
       price: "$ 19,00",
       id: 5,
-
-      quantity: 0,
 
       productDescription:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam  placerat, augue a volutpat hendrerit, sapien tortor faucibus augue, a  maximus elit ex vitae libero. Sed quis mauris eget arcu facilisis consequat sed eu felis. Nunc sed porta augue. Morbi porta tempor odio, in  molestie diam bibendum sed 5",
@@ -158,8 +149,6 @@ export const useItemStore = defineStore("itemStore", () => {
       price: "$ 29,00",
       id: 6,
 
-      quantity: 0,
-
       productDescription:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam  placerat, augue a volutpat hendrerit, sapien tortor faucibus augue, a  maximus elit ex vitae libero. Sed quis mauris eget arcu facilisis consequat sed eu felis. Nunc sed porta augue. Morbi porta tempor odio, in  molestie diam bibendum sed 6",
 
@@ -181,15 +170,18 @@ export const useItemStore = defineStore("itemStore", () => {
         },
       ],
     },
-  ];
+  ]);
 
   function getProductToCart(counter, id) {
-    for (let i = 0; i < counter; i++) {
-      cartData.cart.push(itemArr[id]);
+    const index = +id + 1;
+
+    if (cartData.cart.some((item) => item.id == index)) {
+      cartData.cart.find((item) => item.id == index).quantity += counter;
+    } else {
+      cartData.cart.push({ ...itemArr[id], quantity: counter });
     }
 
-    itemArr[id].quantity += counter; //add quantity of product object
-    cartData.showDoneModal = true; //show a modal window for successful adding to cart
+    cartData.showSuccessAlert = true; //show a modal window for successful adding to cart
   }
 
   return {

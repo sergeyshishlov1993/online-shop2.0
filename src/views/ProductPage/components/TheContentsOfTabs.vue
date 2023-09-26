@@ -54,7 +54,7 @@
       </ui-text-h3>
 
       <!-- ------------------- iteration over an array of objects for rendering reviews --------- -->
-      <the-reviews
+      <the-product-reviews
         v-for="review in item.reviews"
         :key="review.date"
         :name="review.namePersone"
@@ -63,7 +63,7 @@
         :grade="review.gradeStar"
         :text="review.reviewText"
       >
-      </the-reviews>
+      </the-product-reviews>
     </div>
 
     <!-- ------------------- Feedback form component --------- -->
@@ -72,9 +72,9 @@
 </template>
 
 <script setup>
-import UiTextH3 from "@/components/UiComponents/UiTextH3.vue";
-import UiTextH4 from "@/components/UiComponents/UiTextH4.vue";
-import TheReviews from "./TheReviews.vue";
+import UiTextH3 from "@/components/Block/UiComponents/UiTextH3.vue";
+import UiTextH4 from "@/components/Block/UiComponents/UiTextH4.vue";
+import TheProductReviews from "./TheProductReviews.vue";
 import TheReviewsForm from "./TheReviewsForm.vue";
 
 const props = defineProps({

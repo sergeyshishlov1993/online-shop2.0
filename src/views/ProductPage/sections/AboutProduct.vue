@@ -59,8 +59,8 @@
 
       <!-- ------------------- -->
       <div class="wrapper__categories mt-59">
-        <the-categories-product title="SKU:" value="12" />
-        <the-categories-product title="Categories:" value="Fashion, Style" />
+        <the-product-categories title="SKU:" value="12" />
+        <the-product-categories title="Categories:" value="Fashion, Style" />
       </div>
       <!-- ------------------- -->
     </div>
@@ -74,12 +74,12 @@ import { useItemStore } from "@/stores/fakeData";
 import { useLikeListData } from "@/stores/likeListData";
 
 import TheProductImg from "../components/TheProductImg.vue";
-import UiTextH2 from "@/components/UiComponents/UiTextH2.vue";
-import UiTextH3 from "@/components/UiComponents/UiTextH3.vue";
-import UiTextH4 from "@/components/UiComponents/UiTextH4.vue";
+import UiTextH2 from "@/components/Block/UiComponents/UiTextH2.vue";
+import UiTextH3 from "@/components/Block/UiComponents/UiTextH3.vue";
+import UiTextH4 from "@/components/Block/UiComponents/UiTextH4.vue";
 import IconStar from "@/components/UiIcon/IconStar.vue";
-import UiCounter from "@/components/UiComponents/UiCounter.vue";
-import UiButtonMain from "@/components/UiComponents/UiButtonMain.vue";
+import UiCounter from "@/components/Block/UiComponents/UiCounter.vue";
+import UiButtonMain from "@/components/Block/UiComponents/UiButtonMain.vue";
 
 import IconHeard from "@/components/UiIcon/IconHeard.vue";
 import IconVerticalLine from "@/components/UiIcon/IconVerticalLine.vue";
@@ -88,7 +88,7 @@ import IconInstagram from "@/components/UiIcon/IconInstagram.vue";
 import IconFacebook from "@/components/UiIcon/IconFacebook.vue";
 import IconTwiter from "@/components/UiIcon/IconTwiter.vue";
 
-import TheCategoriesProduct from "../components/TheCategoriesProduct.vue";
+import TheProductCategories from "../components/TheProductCategories.vue";
 
 const props = defineProps({
   productInformation: {

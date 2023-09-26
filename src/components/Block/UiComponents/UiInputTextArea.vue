@@ -1,18 +1,15 @@
 <template>
-  <input
-    :type="props.type"
-    :placeholder="props.placeholder"
-    :value="props.value"
+  <textarea
     :name="props.name"
-  />
+    :id="props.id"
+    :rows="props.rows"
+    :value="props.value"
+    :placeholder="props.placeholder"
+  ></textarea>
 </template>
 
 <script setup>
 const props = defineProps({
-  type: {
-    type: String,
-    required: true,
-  },
   placeholder: {
     type: String,
     required: true,
@@ -25,13 +22,19 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  id: {
+    type: String,
+    required: false,
+  },
+  rows: {
+    type: String,
+    required: true,
+  },
 });
 </script>
 
 <style lang="scss" scoped>
-input {
-  padding-bottom: 11px;
-  width: 261px;
-  border-bottom: 1px solid rgba(216, 216, 216, 1);
+textarea {
+  padding: 10px;
 }
 </style>

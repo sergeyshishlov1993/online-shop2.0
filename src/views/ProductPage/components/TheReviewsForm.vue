@@ -79,15 +79,15 @@ import { ref } from "vue";
 import { useItemStore } from "@/stores/fakeData";
 import { useRoute } from "vue-router";
 
-import UiForm from "@/components/UiComponents/UiForm.vue";
-import UiInput from "@/components/UiComponents/UiInput.vue";
-import UiInputCheckBox from "@/components/UiComponents/UiInputCheckBox.vue";
-import UiTextH3 from "@/components/UiComponents/UiTextH3.vue";
-import UiTextH4 from "@/components/UiComponents/UiTextH5.vue";
-import UiTextH5 from "@/components/UiComponents/UiTextH5.vue";
-import UiTextH6 from "@/components/UiComponents/UiTextH6.vue";
-import UiTextSmall from "@/components/UiComponents/UiTextSmall.vue";
-import UiButtonBlack from "@/components/UiComponents/UiButtonBlack.vue";
+import UiForm from "@/components/Block/UiComponents/UiForm.vue";
+import UiInput from "@/components/Block/UiComponents/UiInput.vue";
+import UiInputCheckBox from "@/components/Block/UiComponents/UiInputCheckBox.vue";
+import UiTextH3 from "@/components/Block/UiComponents/UiTextH3.vue";
+import UiTextH4 from "@/components/Block/UiComponents/UiTextH5.vue";
+import UiTextH5 from "@/components/Block/UiComponents/UiTextH5.vue";
+import UiTextH6 from "@/components/Block/UiComponents/UiTextH6.vue";
+import UiTextSmall from "@/components/Block/UiComponents/UiTextSmall.vue";
+import UiButtonBlack from "@/components/Block/UiComponents/UiButtonBlack.vue";
 import TheStarCounter from "./TheStarCounter.vue";
 
 // --------------------stor----------------------------

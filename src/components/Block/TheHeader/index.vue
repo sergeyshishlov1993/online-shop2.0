@@ -13,17 +13,24 @@
       <!-- ------------->
       <nav-bar :current-route="currentRoute" />
     </div>
+
+    <success-alert v-if="cartData.showSuccessAlert" />
+    <the-shopping-bag v-if="cartData.showCartBlock" />
   </header>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
+import { useCartData } from "@/stores/cartData";
 import IconLogo from "@/components/UiIcon/IconLogo.vue";
 import NavBar from "../Navbar";
 
+import SuccessAlert from "./components/SuccessAlert.vue";
+import TheShoppingBag from "./components/TheShoppingBag.vue";
+
 const route = useRoute();
-// const { cartData } = useCartData();
+const { cartData } = useCartData();
 
 const currentRoute = computed(() => {
   return route.name;

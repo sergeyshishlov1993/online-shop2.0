@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import UiTextH4 from "@/components/UiComponents/UiTextH4.vue";
+import UiTextH4 from "@/components/Block/UiComponents/UiTextH4.vue";
 
 const props = defineProps({
   title: {

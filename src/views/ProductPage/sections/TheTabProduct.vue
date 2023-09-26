@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import UiTextH3 from "@/components/UiComponents/UiTextH3.vue";
+import UiTextH3 from "@/components/Block/UiComponents/UiTextH3.vue";
 
 const props = defineProps({
   selectedTab: {

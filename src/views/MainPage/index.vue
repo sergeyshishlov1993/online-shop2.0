@@ -8,7 +8,7 @@
     </router-link>
   </div>
 
-  <card-wrapper class="mt-39">
+  <card class="mt-39">
     <card-item
       v-for="(card, id) in itemArr"
       :key="card.price"
@@ -17,7 +17,7 @@
       :subtitle="card.price"
       @click="goToAboutCard(id)"
     />
-  </card-wrapper>
+  </card>
 </template>
 
 <script setup>
@@ -25,10 +25,10 @@ import { useRouter } from "vue-router";
 import { useItemStore } from "@/stores/fakeData";
 
 import MainPageSlider from "./components/MainPageSlider.vue";
-import UiH1 from "@/components/UiComponents/UiTextH1.vue";
-import UiH3 from "@/components/UiComponents/UiTextH3.vue";
-import CardWrapper from "@/components/UiBlock/Card/components/CardWrapper.vue";
-import CardItem from "../../components/UiBlock/Card/components/CardItem.vue";
+import UiH1 from "@/components/Block/UiComponents/UiTextH1.vue";
+import UiH3 from "@/components/Block/UiComponents/UiTextH3.vue";
+import Card from "@/components/Block/Card";
+import CardItem from "../../components/Block/Card/CardItem.vue";
 
 const { itemArr } = useItemStore();
 const router = useRouter();

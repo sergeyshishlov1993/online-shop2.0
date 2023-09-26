@@ -15,7 +15,10 @@
       <nav-bar-link class="ml-64">
         <router-link to="/blog"> Blog</router-link>
 
-        <span v-if="currentRoute === 'blog'" class="border mt-24"></span>
+        <span
+          v-if="currentRoute === 'blog' || currentRoute === 'blog-coments'"
+          class="border mt-24"
+        ></span>
       </nav-bar-link>
 
       <!-- ----------- -->
@@ -36,9 +39,7 @@
       </nav-bar-link>
 
       <nav-bar-link class="ml-39">
-        <router-link to="#">
-          <icon-shopping-bag />
-        </router-link>
+        <icon-shopping-bag @click="cartData.showCartBlock = true" />
       </nav-bar-link>
 
       <nav-bar-link class="ml-39">
@@ -51,11 +52,15 @@
 </template>
 
 <script setup>
+import { useCartData } from "@/stores/cartData";
+
 import NavBarLink from "./components/NavBarLink.vue";
 import IconVerticalLine from "@/components/UiIcon/IconVerticalLine.vue";
 import IconSearch from "@/components/UiIcon/IconSearch.vue";
 import IconShoppingBag from "@/components/UiIcon/IconShoppingBag.vue";
 import IconPerson from "@/components/UiIcon/IconPerson.vue";
+
+const { cartData } = useCartData();
 
 const props = defineProps({
   currentRoute: {

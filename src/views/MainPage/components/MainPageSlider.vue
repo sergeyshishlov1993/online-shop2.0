@@ -20,10 +20,10 @@
 </template>
 
 <script setup>
-import UiTextH1 from "@/components/UiComponents/UiTextH1.vue";
-import UiTextH3 from "@/components/UiComponents/UiTextH3.vue";
-import UiButtonMain from "@/components/UiComponents/UiButtonMain.vue";
-import UiButtonSlider from "@/components/UiComponents/UiButtonSlider.vue";
+import UiTextH1 from "@/components/Block/UiComponents/UiTextH1.vue";
+import UiTextH3 from "@/components/Block/UiComponents/UiTextH3.vue";
+import UiButtonMain from "@/components/Block/UiComponents/UiButtonMain.vue";
+import UiButtonSlider from "@/components/Block/UiComponents/UiButtonSlider.vue";
 </script>
 
 <style lang="scss" scoped>

@@ -26,7 +26,7 @@
     </div>
 
     <!-- -------------------------- review text-------------------------- -->
-    <ui-text-h4 class="mt-24 grey">
+    <ui-text-h4 class="mt-24 grey fw-400">
       {{ props.text }}
     </ui-text-h4>
 
@@ -35,9 +35,9 @@
 </template>
 
 <script setup>
-import UiTextH3 from "@/components/UiComponents/UiTextH3.vue";
-import UiTextH4 from "@/components/UiComponents/UiTextH4.vue";
-import UiTextH5 from "@/components/UiComponents/UiTextH5.vue";
+import UiTextH3 from "@/components/Block/UiComponents/UiTextH3.vue";
+import UiTextH4 from "@/components/Block/UiComponents/UiTextH4.vue";
+import UiTextH5 from "@/components/Block/UiComponents/UiTextH5.vue";
 import IconStar from "@/components/UiIcon/IconStar.vue";
 
 const props = defineProps({

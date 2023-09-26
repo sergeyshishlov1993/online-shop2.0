@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import UiTextH4 from "@/components/UiComponents/UiTextH4.vue";
+import UiTextH4 from "@/components/Block/UiComponents/UiTextH4.vue";
 import IconArrowRigth from "@/components/UiIcon/IconArrowRigth.vue";
 import IconLinkIn from "@/components/UiIcon/IconLinkIn.vue";
 import IconFacebook from "@/components/UiIcon/IconFacebook.vue";

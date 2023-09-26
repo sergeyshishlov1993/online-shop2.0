@@ -1,5 +1,5 @@
 <template>
-  <div class="counter mr-23">
+  <div class="counter mr-23" :class="{ counter__cart: props.cart }">
     <button
       @click="
         changeCounter(updatedCounter !== 0 ? updatedCounter-- : updatedCounter)
@@ -15,11 +15,16 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 const emit = defineEmits(["changeCounterValue"]);
 const props = defineProps({
   counter: {
     type: Number,
     required: true,
+  },
+  cart: {
+    type: Boolean,
+    required: false,
   },
 });
 
@@ -42,7 +47,13 @@ button {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  &__cart {
+    background: none;
+    height: 0;
+    width: 60px;
+  }
 }
+
 .mr-23 {
   margin-right: 23px;
 }

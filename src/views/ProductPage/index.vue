@@ -1,27 +1,35 @@
 <template>
-  <about-product :productInformation="productInformation" />
+  <section>
+    <about-product :productInformation="productInformation" />
+  </section>
 
-  <div class="tabs">
-    <the-tab-product
-      @click="changeTab('Description')"
-      :selectedTab="currentTab"
-      :name="'Description'"
-      >Description</the-tab-product
-    >
-    <the-tab-product
-      @click="changeTab('Aditional information')"
-      :selectedTab="currentTab"
-      :name="'Aditional information'"
-      >Aditional information</the-tab-product
-    >
-    <the-tab-product
-      @click="changeTab('Reviews')"
-      :selectedTab="currentTab"
-      :name="'Reviews'"
-      >Reviews({{ calculatesTheNumberOfReviews }})</the-tab-product
-    >
-  </div>
-  <the-contents-of-tabs :item="currentTabsItem" :selectedTab="currentTab" />
+  <section>
+    <div class="tabs">
+      <the-tab-product
+        @click="changeTab('Description')"
+        :selectedTab="currentTab"
+        :name="'Description'"
+        >Description</the-tab-product
+      >
+      <the-tab-product
+        @click="changeTab('Aditional information')"
+        :selectedTab="currentTab"
+        :name="'Aditional information'"
+        >Aditional information</the-tab-product
+      >
+      <the-tab-product
+        @click="changeTab('Reviews')"
+        :selectedTab="currentTab"
+        :name="'Reviews'"
+        >Reviews({{ calculatesTheNumberOfReviews }})</the-tab-product
+      >
+    </div>
+    <the-contents-of-tabs :item="currentTabsItem" :selectedTab="currentTab" />
+  </section>
+
+  <section>
+    <similar-product />
+  </section>
 </template>
 
 <script setup>
@@ -30,9 +38,10 @@ import { ref, computed } from "vue";
 import { useItemStore } from "@/stores/fakeData";
 import { useRoute } from "vue-router";
 
-import AboutProduct from "./section/AboutProduct.vue";
-import TheTabProduct from "./section/TheTabProduct.vue";
+import AboutProduct from "./sections/AboutProduct.vue";
+import TheTabProduct from "./sections/TheTabProduct.vue";
 import TheContentsOfTabs from "./components/TheContentsOfTabs.vue";
+import SimilarProduct from "./sections/SimilarProduct.vue";
 
 const route = useRoute();
 const { itemArr } = useItemStore();

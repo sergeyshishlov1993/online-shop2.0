@@ -52,15 +52,15 @@
 import { useRouter } from "vue-router";
 import { ref, computed } from "vue";
 import { useItemStore } from "@/stores/fakeData";
-import UiTextH1 from "@/components/UiComponents/UiTextH1.vue";
-import UiTextH5 from "@/components/UiComponents/UiTextH5.vue";
-import CardItem from "@/components/UiBlock/Card/components/CardItem.vue";
-import CardWrapper from "@/components/UiBlock/Card/components/CardWrapper.vue";
-import UiForm from "@/components/UiComponents/UiForm.vue";
+import UiTextH1 from "@/components/Block/UiComponents/UiTextH1.vue";
+import UiTextH5 from "@/components//Block/UiComponents/UiTextH5.vue";
+import CardItem from "@/components/Block/Card/CardItem.vue";
+import CardWrapper from "@/components/Block/Card/index.vue";
+import UiForm from "@/components/Block/UiComponents/UiForm.vue";
 
-import UiInput from "@/components/UiComponents/UiInput.vue";
-import UiSelect from "@/components/UiComponents/UiSelect.vue";
-import UiOption from "@/components/UiComponents/UiOption.vue";
+import UiInput from "@/components/Block/UiComponents/UiInput.vue";
+import UiSelect from "@/components/Block/UiComponents/UiSelect.vue";
+import UiOption from "@/components/Block/UiComponents/UiOption.vue";
 
 const store = useItemStore();
 const router = useRouter();
