@@ -32,5 +32,6 @@ const props = defineProps({
 input {
   padding-bottom: 11px;
   width: 261px;
+  border-bottom: 1px solid rgba(216, 216, 216, 1);
 }
 </style>

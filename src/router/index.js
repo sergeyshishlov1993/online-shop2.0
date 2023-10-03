@@ -51,6 +51,14 @@ const routes = [
       return import("../views/OurStoryPage");
     },
   },
+  {
+    path: "/cart",
+    name: "cart",
+
+    component: function () {
+      return import("../views/ShoppingCartPage");
+    },
+  },
 ];
 
 const router = createRouter({

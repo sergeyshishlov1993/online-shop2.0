@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { useCartData } from "@/stores/cartData";
 import IconLogo from "@/components/UiIcon/IconLogo.vue";

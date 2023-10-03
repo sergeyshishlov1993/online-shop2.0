@@ -27,7 +27,6 @@ import IconSearch from "@/components/UiIcon/IconSearch.vue";
   display: flex;
   align-items: center;
   width: 261px;
-  border-bottom: 1px solid rgba(216, 216, 216, 1);
 }
 .mt-10 {
   margin-top: 10px;

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 
 export const useCartData = defineStore("cartData", () => {
   const cartData = reactive({
@@ -9,7 +9,17 @@ export const useCartData = defineStore("cartData", () => {
     showCartBlock: false,
   });
 
+  const calculationOfTheOrderAmount = () => {
+    let result = 0;
+    cartData.cart.forEach(
+      (item) =>
+        (result += item.quantity * parseInt(item.price.replace(/[^,\d]/g, "")))
+    );
+    return result;
+  };
+
   return {
     cartData,
+    calculationOfTheOrderAmount,
   };
 });

@@ -7,25 +7,23 @@
     <div class="wrapper ml-30">
       <!-- -----------title && close button ----------- -->
 
-      <div class="wrapper__close-btn">
+      <div>
         <ui-text-h5>{{ props.title }}</ui-text-h5>
-        <ui-btn-close @click="removeItemCart" />
-      </div>
 
-      <!-- -----------characteristics && price product ----------- -->
-      <ui-text-h5 class="mt-5"
-        >{{ props.color }}/{{ props.material }}</ui-text-h5
-      >
-      <ui-text-h5 class="yellow mt-8">{{ props.price }}</ui-text-h5>
+        <!-- -----------characteristics && price product ----------- -->
+        <ui-text-h5 class="mt-5"
+          >{{ props.color }}/{{ props.material }}</ui-text-h5
+        >
+        <ui-text-h5 class="yellow mt-8">{{ props.price }}</ui-text-h5>
+      </div>
 
       <!-- -----------counter quantity of goods ----------- -->
       <div class="wrapper__counter mt-34">
-        <ui-text-small class="yellow">QTY:</ui-text-small>
-
+        <ui-text-small v-if="props.cart" class="yellow">QTY:</ui-text-small>
         <!-- -----------counter ----------- -->
         <div class="mr-23">
           <ui-counter
-            :cart="true"
+            :cart="props.cart"
             :counter="props.quantity"
             @change-counter-value="
               (counterValue) => changeCounter(counterValue)
@@ -38,6 +36,7 @@
         </div>
       </div>
     </div>
+    <ui-btn-close @click="removeItemCart" />
   </div>
 </template>
 
@@ -82,6 +81,10 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  cart: {
+    type: Boolean,
+    required: false,
+  },
 });
 const path = require(`@/assets/img/firstScrin/Card/${props.path}`); //path to product card image
 
@@ -97,6 +100,7 @@ function changeCounter(counterValue) {
 <style lang="scss" scoped>
 img {
   width: 136px;
+  object-fit: cover;
 }
 
 .card {
@@ -109,11 +113,6 @@ img {
 .wrapper {
   display: flex;
   flex-direction: column;
-  &__close-btn {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-  }
   &__counter {
     display: flex;
     align-items: center;

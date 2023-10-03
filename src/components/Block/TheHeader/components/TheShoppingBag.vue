@@ -25,6 +25,7 @@
       :material="item.aditionalInformation.material"
       :price="item.price"
       :quantity="item.quantity"
+      :cart="true"
       @remove-item-cart="removeItem(index)"
     />
     <!-- ----------footer-cart------------ -->
@@ -36,11 +37,11 @@
         >
 
         <ui-text-h4 class="black ml-88"
-          >$ {{ calculationOfTheOrderAmount }}</ui-text-h4
+          >$ {{ calculationOfTheOrderAmount() }}</ui-text-h4
         >
       </div>
 
-      <ui-button-main class="border mt-18" @click="console.log(cartData.cart)"
+      <ui-button-main class="border mt-18" @click="goToCart"
         >VIEW CART</ui-button-main
       >
     </div>
@@ -51,6 +52,7 @@
 import { computed } from "vue";
 
 import { useCartData } from "@/stores/cartData";
+import { useRouter } from "vue-router";
 
 import UiTextH4 from "@/components/Block/UiComponents/UiTextH4.vue";
 import UiTextSmall from "@/components/Block/UiComponents/UiTextSmall.vue";
@@ -58,20 +60,25 @@ import BagCard from "./BagCard.vue";
 import UiButtonMain from "@/components/Block/UiComponents/UiButtonMain.vue";
 import UiButtonClose from "@/components/Block/UiComponents/UiButtonClose.vue";
 
-const { cartData } = useCartData();
+const { cartData, calculationOfTheOrderAmount } = useCartData();
+const router = useRouter();
 
 function removeItem(index) {
   cartData.cart.splice(index, 1);
 } //completely remove the item from the cart
 
-const calculationOfTheOrderAmount = computed(() => {
-  let result = 0;
-  cartData.cart.forEach(
-    (item) =>
-      (result += item.quantity * parseInt(item.price.replace(/[^,\d]/g, "")))
-  );
-  return result;
-}); //calculate the total order amount
+// const calculationOfTheOrderAmount = computed(() => {
+//   let result = 0;
+//   cartData.cart.forEach(
+//     (item) =>
+//       (result += item.quantity * parseInt(item.price.replace(/[^,\d]/g, "")))
+//   );
+//   return result;
+// }); //calculate the total order amount
+
+function goToCart() {
+  router.push("/cart");
+}
 </script>
 
 <style lang="scss" scoped>

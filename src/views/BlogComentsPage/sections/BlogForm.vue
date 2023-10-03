@@ -136,7 +136,6 @@ function sendComment() {
 }
 .width-100 {
   width: 100%;
-  border-bottom: 1px solid rgba(216, 216, 216, 1);
 }
 .textaria {
   width: 100%;
