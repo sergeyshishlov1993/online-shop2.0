@@ -2,11 +2,11 @@
   <select></select>
 
   <div class="select" @click="showOption">
-    <ui-text-h4 class="black fw-400" v-if="props.mainTitle">{{
+    <ui-text-h4 class="grey fw-400" v-if="props.mainTitle">{{
       props.mainTitle
     }}</ui-text-h4>
 
-    <ui-text-small class="grey fw-400">
+    <ui-text-small class="grey fw-400" :class="{ checkout: props.checkout }">
       {{ hidenList }}
     </ui-text-small>
 
@@ -50,7 +50,15 @@ function getSelectValue(value, name) {
 }
 
 const hidenList = computed(() => {
-  return option.value === "" ? props.title : nameOption.value;
+  // ------clear-select value after submit form-----------
+  if (props.submitForm) {
+    option.value = "";
+    nameOption.value = "";
+  }
+
+  return option.value == "" || props.submitForm
+    ? props.title
+    : nameOption.value;
 });
 
 const emit = defineEmits(["selectValue", "open"]);
@@ -68,6 +76,15 @@ const props = defineProps({
     type: Array,
     required: false,
   },
+  checkout: {
+    type: Boolean,
+    required: false,
+  },
+  submitForm: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 });
 </script>
 
@@ -78,11 +95,17 @@ select {
 
 .select {
   padding-bottom: 13px;
-  width: 250px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgba(216, 216, 216, 1);
   cursor: pointer;
+}
+.checkout {
+  font-family: DM Sans;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(112, 112, 112, 1);
 }
 </style>

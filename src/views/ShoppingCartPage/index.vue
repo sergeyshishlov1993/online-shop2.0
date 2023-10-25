@@ -97,9 +97,11 @@ function sendCouponCode() {
 
 .btn {
   margin-left: 76px;
-  width: 193px;
+  width: 100%;
 }
 .form {
+  width: 580px;
+  display: flex;
   align-self: flex-end;
 }
 .center {

@@ -24,6 +24,9 @@
 .white {
   color: var(--var-body-bg);
 }
+.red {
+  color: darkred !important;
+}
 
 /* ---------- boldness-text--------- */
 .fw-400 {

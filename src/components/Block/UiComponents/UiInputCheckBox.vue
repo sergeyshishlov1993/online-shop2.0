@@ -1,16 +1,6 @@
 <template>
-  <input type="checkbox" :checked="props.checked" />
+  <input type="checkbox" />
 </template>
-
-<script setup>
-const props = defineProps({
-  checked: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-});
-</script>
 
 <style lang="scss" scoped>
 input {

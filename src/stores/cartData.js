@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { reactive, computed } from "vue";
+import { reactive } from "vue";
 
 export const useCartData = defineStore("cartData", () => {
   const cartData = reactive({

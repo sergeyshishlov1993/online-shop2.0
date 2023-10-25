@@ -19,7 +19,7 @@ const props = defineProps({
   },
   value: {
     type: String,
-    required: true,
+    required: false,
   },
   name: {
     type: String,
@@ -31,7 +31,7 @@ const props = defineProps({
 <style lang="scss" scoped>
 input {
   padding-bottom: 11px;
-  width: 261px;
+  width: 100%;
   border-bottom: 1px solid rgba(216, 216, 216, 1);
 }
 </style>

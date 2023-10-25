@@ -59,6 +59,39 @@ const routes = [
       return import("../views/ShoppingCartPage");
     },
   },
+  {
+    path: "/checkout",
+    name: "checkout",
+
+    component: function () {
+      return import("../views/CheckoutPage");
+    },
+  },
+
+  {
+    path: "/personal-account",
+    name: "personal-account",
+
+    component: function () {
+      return import("../views/PersonalAccountPage");
+    },
+  },
+  {
+    path: "/auth",
+    name: "authentication",
+
+    component: function () {
+      return import("../views/AuthModulePage");
+    },
+  },
+  {
+    path: "/confirmation",
+    name: "confirmation",
+
+    component: function () {
+      return import("../views/ConfirmationOrderPage");
+    },
+  },
 ];
 
 const router = createRouter({

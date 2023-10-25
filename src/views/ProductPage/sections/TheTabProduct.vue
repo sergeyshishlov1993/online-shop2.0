@@ -1,13 +1,15 @@
 <template>
   <div>
-    <ui-text-h-3 class="grey pr-96 fw-400">
+    <ui-text-h-3 :class="addClass">
       <slot />
     </ui-text-h-3>
+
     <div :class="{ tab: props.name === props.selectedTab }" />
   </div>
 </template>
 
 <script setup>
+import { computed } from "vue";
 import UiTextH3 from "@/components/Block/UiComponents/UiTextH3.vue";
 
 const props = defineProps({
@@ -19,6 +21,11 @@ const props = defineProps({
     type: String,
     requered: true,
   },
+});
+const addClass = computed(() => {
+  return props.name === props.selectedTab
+    ? "black fw-400"
+    : "grey pr-96 fw-400";
 });
 </script>
 
@@ -32,11 +39,10 @@ div {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding-right: 96px;
   cursor: pointer;
 }
 .tab {
-  width: calc(100% - 96px);
+  width: 100%;
   position: absolute;
   bottom: -35px;
   border: 1px solid rgba(0, 0, 0, 1);

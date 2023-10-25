@@ -24,7 +24,7 @@ const router = useRouter();
 const { cartData } = useCartData();
 
 function goToOrderPage() {
-  router.push("/placing-order");
+  router.push("/cart");
   cartData.showSuccessAlert = false;
 }
 

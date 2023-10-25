@@ -29,14 +29,17 @@
               <div class="mt-23">
                 <ui-select-custom
                   title="SELECT A COUNTRY"
+                  :submitForm="submitForm"
                   :selectOption="selectArrCountry"
                   @selectValue="(value) => getSelectValue(value, 'country')"
+                  @open="clearSelectValue"
                 ></ui-select-custom>
               </div>
 
               <div class="mt-23">
                 <ui-select-custom
                   title="CITY"
+                  :submitForm="submitForm"
                   :selectOption="selectArrCity"
                   @selectValue="(value) => getSelectValue(value, 'city')"
                 ></ui-select-custom>
@@ -45,6 +48,7 @@
               <div class="mt-23">
                 <ui-select-custom
                   title="POST CODE / ZIP"
+                  :submitForm="submitForm"
                   :selectOption="selectPostCode"
                   @selectValue="(value) => getSelectValue(value, 'post-code')"
                 ></ui-select-custom>
@@ -52,7 +56,7 @@
             </div>
           </div>
           <!-- ------------------------ -->
-          <ui-button-main class="border">
+          <ui-button-main class="border" @click="sendShipingInfo">
             <ui-text-h4 class="black"> UPDATE TOTALS </ui-text-h4>
           </ui-button-main>
         </div>
@@ -65,7 +69,10 @@
         <ui-text-h4 class="black">$ {{ calculationTotalPrise }}</ui-text-h4>
       </div>
 
-      <ui-button-black class="width-100 mt-45">
+      <ui-button-black
+        class="width-100 mt-45"
+        @click="router.push('/checkout')"
+      >
         <ui-text-h4>PROCEED TO CHECKOUT</ui-text-h4>
       </ui-button-black>
     </div>
@@ -75,6 +82,7 @@
 <script setup>
 import { useCartData } from "@/stores/cartData";
 import { ref, reactive, computed } from "vue";
+import { useRouter } from "vue-router";
 import UiTextH2 from "@/components/Block/UiComponents/UiTextH2.vue";
 import UiTextH4 from "@/components/Block/UiComponents/UiTextH4.vue";
 import UiSelectCustom from "@/components/Block/UiComponents/UiSelectCustom.vue";
@@ -82,10 +90,12 @@ import UiButtonMain from "@/components/Block/UiComponents/UiButtonMain.vue";
 import UiButtonBlack from "@/components/Block/UiComponents/UiButtonBlack.vue";
 
 const { calculationOfTheOrderAmount } = useCartData();
+const router = useRouter();
 const showShipingInfo = ref(false);
 const country = ref("");
 const city = ref("");
 const postCode = ref("");
+const submitForm = ref(false);
 
 const selectArrCountry = reactive([
   { value: "", name: "SELECT A COUNTRY" },
@@ -101,6 +111,10 @@ const selectArrCountry = reactive([
 
 const selectArrCity = reactive([{ value: "", name: "CITY" }]);
 const selectPostCode = reactive([{ value: "", name: "POST CODE / ZIP" }]);
+
+function clearSelectValue() {
+  submitForm.value = false;
+}
 
 function openShipingInfo() {
   showShipingInfo.value = !showShipingInfo.value;
@@ -153,6 +167,11 @@ const calculationTotalPrise = computed(() => {
     return calculationOfTheOrderAmount();
   }
 });
+
+function sendShipingInfo() {
+  // sending data to the server
+  submitForm.value = true;
+}
 </script>
 
 <style lang="scss" scoped>
@@ -184,6 +203,7 @@ const calculationTotalPrise = computed(() => {
       align-items: flex-end;
     }
     &-select {
+      width: 100%;
       margin-top: 39px;
     }
   }

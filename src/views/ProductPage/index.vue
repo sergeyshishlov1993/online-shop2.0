@@ -6,18 +6,23 @@
   <section>
     <div class="tabs">
       <the-tab-product
+        class="mr-96"
         @click="changeTab('Description')"
         :selectedTab="currentTab"
         :name="'Description'"
         >Description</the-tab-product
       >
+
       <the-tab-product
+        class="mr-96"
         @click="changeTab('Aditional information')"
         :selectedTab="currentTab"
         :name="'Aditional information'"
         >Aditional information</the-tab-product
       >
+
       <the-tab-product
+        class="mr-96"
         @click="changeTab('Reviews')"
         :selectedTab="currentTab"
         :name="'Reviews'"
@@ -71,5 +76,8 @@ function changeTab(name) {
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(216, 216, 216, 1);
+}
+.mr-96 {
+  margin-right: 96px;
 }
 </style>

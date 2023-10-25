@@ -3,29 +3,29 @@
     <!-- ------------ -->
     <ul>
       <nav-bar-link>
-        <router-link to="/shop">Shop</router-link>
+        <router-link to="/shop" class="pb-24">Shop</router-link>
 
         <span
-          class="border mt-24"
+          class="border"
           v-if="currentRoute === 'shop' || currentRoute === 'product'"
         ></span>
       </nav-bar-link>
 
       <!-- ---------- -->
       <nav-bar-link class="ml-64">
-        <router-link to="/blog"> Blog</router-link>
+        <router-link to="/blog" class="pb-24"> Blog</router-link>
 
         <span
           v-if="currentRoute === 'blog' || currentRoute === 'blog-coments'"
-          class="border mt-24"
+          class="border"
         ></span>
       </nav-bar-link>
 
       <!-- ----------- -->
       <nav-bar-link class="ml-64">
-        <router-link to="/our-story">Our Story</router-link>
+        <router-link to="/our-story" class="pb-24">Our Story</router-link>
 
-        <span class="border mt-24" v-if="currentRoute === 'our-story'"></span>
+        <span class="border" v-if="currentRoute === 'our-story'"></span>
       </nav-bar-link>
 
       <!-- ------line----- -->
@@ -43,7 +43,7 @@
       </nav-bar-link>
 
       <nav-bar-link class="ml-39">
-        <router-link to="#">
+        <router-link to="/personal-account">
           <icon-person />
         </router-link>
       </nav-bar-link>
@@ -78,9 +78,6 @@ ul {
 a {
   color: inherit;
 }
-.mt-24 {
-  margin-top: 24px;
-}
 .ml-39 {
   margin-left: 39px;
 }
@@ -92,6 +89,9 @@ a {
 }
 .ml-64 {
   margin-left: 64px;
+}
+.pb-24 {
+  padding-bottom: 24px;
 }
 .border {
   width: 40px;
