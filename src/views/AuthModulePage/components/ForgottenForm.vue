@@ -9,8 +9,18 @@
       send you an e-mail
     </ui-text-h3>
 
-    <ui-form class="mt-126">
-      <ui-input name="email" placeholder="Email" />
+    <ui-form class="mt-126" @submit.prevent="forgottenPassword">
+      <ui-input
+        name="email"
+        placeholder="Email"
+        type="email"
+        :value="email"
+        @input="getInputValue"
+        @focus="(event) => checkTouchInput(event, 'email')"
+        @blur="(event) => removeFocus(event, 'email')"
+      />
+
+      <ui-error :text="errors.email.message" />
 
       <ui-button-black class="width-100">
         <ui-text-h4>RESET PASSWORD</ui-text-h4>
@@ -20,12 +30,53 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import {
+  errors,
+  getMessageValidation,
+  inputCheckField,
+} from "@/utils/validations/validationAuth";
+
 import UiTextH1 from "@/components/Block/UiComponents/UiTextH1.vue";
 import UiTextH3 from "@/components/Block/UiComponents/UiTextH3.vue";
+import UiTextH4 from "@/components/Block/UiComponents/UiTextH4.vue";
 import UiForm from "@/components/Block/UiComponents/UiForm.vue";
 import UiInput from "@/components/Block/UiComponents/UiInput.vue";
+import UiError from "@/components/Block/UiComponents/UiError.vue";
 import UiButtonBlack from "@/components/Block/UiComponents/UiButtonBlack.vue";
-import UiTextH4 from "@/components/Block/UiComponents/UiTextH4.vue";
+
+const email = ref("");
+
+function checkTouchInput(event, name) {
+  if (errors[name].isDirty) {
+    return errors[name].isDirty;
+  } else {
+    return (errors[name].isDirty = true);
+  }
+}
+
+function removeFocus(event, name) {
+  if (event.target.value) {
+    inputCheckField(event.target.value, name);
+  } else {
+    getMessageValidation("required", name);
+  }
+}
+
+function getInputValue(event) {
+  email.value = event.target.value;
+  inputCheckField(email.value, "email");
+}
+
+function forgottenPassword() {
+  if (email.value === "" || errors.email.message !== "") {
+    inputCheckField("", "email");
+  }
+  //
+  else {
+    email.value = "";
+  }
+}
 </script>
 
 <style lang="scss" scoped>

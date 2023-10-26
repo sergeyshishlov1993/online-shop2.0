@@ -9,7 +9,7 @@
       @focus="(event) => checkTouchInput(event, 'email')"
       @blur="(event) => removeFocus(event, 'email')"
     />
-    <ui-label for="email" :text="emailValidation" />
+    <ui-error :text="errors.email.message" />
 
     <ui-input
       name="password"
@@ -19,9 +19,9 @@
       :value="password"
       @input="(event) => getInputValue(event, 'password')"
       @focus="(event) => checkTouchInput(event, 'password')"
-      @blur="removeFocus"
+      @blur="(event) => removeFocus(event, 'password')"
     />
-    <ui-label for="email" :text="passwordValidation" />
+    <ui-error :text="errors.password.message" />
 
     <ui-input
       name="confirm password"
@@ -30,10 +30,10 @@
       class="mt-46"
       :value="confirmPassword"
       @input="(event) => getInputValue(event, 'confirm password')"
-      @focus="(event) => checkTouchInput(event, 'confirm password')"
-      @blur="removeFocus"
+      @focus="(event) => checkTouchInput(event, 'confirmPassword')"
+      @blur="(event) => removeFocus(event, 'confirmPassword')"
     />
-    <ui-label for="email" :text="confirmPasswordValidation" />
+    <ui-error :text="errors.confirmPassword.message" />
 
     <ui-button-black class="width-100">
       <ui-text-h4>REGISTER</ui-text-h4>
@@ -44,17 +44,14 @@
 <script setup>
 import { ref } from "vue";
 import {
-  inputCheckField,
-  emailValidation,
-  passwordValidation,
-  confirmPasswordValidation,
-  isDirty,
-  makeInputDirty,
+  errors,
   getMessageValidation,
+  inputCheckField,
 } from "@/utils/validations/validationAuth";
+
 import UiForm from "@/components/Block/UiComponents/UiForm.vue";
 import UiInput from "@/components/Block/UiComponents/UiInput.vue";
-import UiLabel from "@/components/Block/UiComponents/UiLabel.vue";
+import UiError from "@/components/Block/UiComponents/UiError.vue";
 import UiButtonBlack from "@/components/Block/UiComponents/UiButtonBlack.vue";
 import UiTextH4 from "@/components/Block/UiComponents/UiTextH4.vue";
 
@@ -63,12 +60,19 @@ const password = ref("");
 const confirmPassword = ref("");
 
 function checkTouchInput(event, name) {
-  isDirty.value = true;
-  makeInputDirty(name);
+  if (errors[name].isDirty) {
+    return errors[name].isDirty;
+  } else {
+    return (errors[name].isDirty = true);
+  }
 }
 
-function removeFocus() {
-  emailValidation.value = "";
+function removeFocus(event, name) {
+  if (event.target.value) {
+    inputCheckField(event.target.value, name);
+  } else {
+    getMessageValidation("required", name);
+  }
 }
 
 function getInputValue(event, name) {
@@ -85,25 +89,34 @@ function getInputValue(event, name) {
 
     case "confirm password":
       confirmPassword.value = event.target.value;
-      inputCheckField(
-        confirmPassword.value,
-        "confirm password",
-        password.value
-      );
+      inputCheckField(confirmPassword.value, "confirmPassword");
       break;
   }
 }
-function registerUser() {
-  if (email.value && password.value && confirmPassword.value !== "") {
-    console.log("login :", email.value, "password :", password.value);
 
+function registerUser() {
+  if (
+    (email.value === "" && password.value === "") ||
+    //
+    errors.email.message !== "" ||
+    //
+    errors.password.message !== "" ||
+    //
+    errors.confirmPassword.message !== ""
+  ) {
+    inputCheckField("", "email");
+    inputCheckField("", "password");
+    inputCheckField("", "confirmPassword", password.value);
+  }
+  //
+  else if (confirmPassword.value != password.value) {
+    getMessageValidation("match", "confirmPassword");
+  }
+  //
+  else {
     email.value = "";
     password.value = "";
     confirmPassword.value = "";
-  } else {
-    inputCheckField(email.value, "email");
-    inputCheckField(password.value, "password");
-    inputCheckField(confirmPassword.value, "confirm password");
   }
 }
 </script>

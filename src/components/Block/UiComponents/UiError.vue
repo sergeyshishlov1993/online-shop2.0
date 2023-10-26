@@ -1,16 +1,12 @@
 <template>
-  <label :for="props.for">
+  <span>
     <ui-text-small class="red">{{ props.text }}</ui-text-small>
-  </label>
+  </span>
 </template>
 
 <script setup>
 import UiTextSmall from "./UiTextSmall.vue";
 const props = defineProps({
-  for: {
-    type: String,
-    required: true,
-  },
   text: {
     type: String,
     required: true,
@@ -19,7 +15,7 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-label {
+span {
   display: block;
   padding-top: 10px;
 }

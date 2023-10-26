@@ -9,7 +9,7 @@
       @focus="(event) => checkTouchInput(event, 'email')"
       @blur="(event) => removeFocus(event, 'email')"
     />
-    <ui-label for="email" :text="emailValidation" />
+    <ui-error :text="errors.email.message" />
 
     <ui-input
       name="password"
@@ -18,10 +18,10 @@
       :value="password"
       @input="(event) => getInputValue(event, 'password')"
       @focus="(event) => checkTouchInput(event, 'password')"
-      @blur="removeFocus"
+      @blur="(event) => removeFocus(event, 'password')"
       class="mt-46"
     />
-    <ui-label for="email" :text="passwordValidation" />
+    <ui-error :text="errors.password.message" />
 
     <div class="mt-15">
       <ui-input-check-box />
@@ -37,15 +37,14 @@
 <script setup>
 import { ref } from "vue";
 import {
+  errors,
+  getMessageValidation,
   inputCheckField,
-  emailValidation,
-  passwordValidation,
-  isDirty,
-  makeInputDirty,
 } from "@/utils/validations/validationAuth";
+
 import UiForm from "@/components/Block/UiComponents/UiForm.vue";
 import UiInput from "@/components/Block/UiComponents/UiInput.vue";
-import UiLabel from "@/components/Block/UiComponents/UiLabel.vue";
+import UiError from "@/components/Block/UiComponents/UiError.vue";
 import UiInputCheckBox from "@/components/Block/UiComponents/UiInputCheckBox.vue";
 import UiButtonBlack from "@/components/Block/UiComponents/UiButtonBlack.vue";
 import UiTextH4 from "@/components/Block/UiComponents/UiTextH4.vue";
@@ -54,12 +53,19 @@ const email = ref("");
 const password = ref("");
 
 function checkTouchInput(event, name) {
-  isDirty.value = true;
-  makeInputDirty(name);
+  if (errors[name].isDirty) {
+    return errors[name].isDirty;
+  } else {
+    return (errors[name].isDirty = true);
+  }
 }
 
-function removeFocus() {
-  emailValidation.value = "";
+function removeFocus(event, name) {
+  if (event.target.value) {
+    inputCheckField(event.target.value, name);
+  } else {
+    getMessageValidation("required", name);
+  }
 }
 
 function getInputValue(event, name) {
@@ -76,13 +82,20 @@ function getInputValue(event, name) {
   }
 }
 function logToYourPersonalAccount() {
-  if (email.value && password.value !== "") {
-    console.log("login :", email.value, "password :", password.value);
+  if (
+    email.value == "" ||
+    password.value == "" ||
+    //
+    errors.email.message !== "" ||
+    errors.password.message !== ""
+  ) {
+    inputCheckField("", "email");
+    inputCheckField("", "password");
+  }
+  //
+  else {
     email.value = "";
     password.value = "";
-  } else {
-    inputCheckField(email.value, "email");
-    inputCheckField(password.value, "password");
   }
 }
 </script>
